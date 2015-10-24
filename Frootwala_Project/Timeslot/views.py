@@ -19,11 +19,11 @@ def slot_list(request,day_type):
 		
 	elif day_type =="Today":
 		queryset = Slots.objects.filter(day=day_type)
-		if datetime.datetime.now.hour > 20:
+		if datetime.datetime.now().hour > 20:
 			queryset = queryset.filter(id__gt = 3)
-		elif datetime.datetime.now.hour > 17:
+		elif datetime.datetime.now().hour > 17:
 			queryset = queryset.filter(id__gt = 2)
-		elif datetime.datetime.now.hour > 13:
+		elif datetime.datetime.now().hour > 13:
 			queryset = queryset.filter(id__gt = 1)
 
 	serializer = TimeSlotSerializer(queryset,many=True)
@@ -32,11 +32,11 @@ def slot_list(request,day_type):
 def alt_slot_list(request):
 	queryset = Slots.objects.all()
 
-	if datetime.datetime.now.hour > 20:
+	if datetime.datetime.now().hour > 20:
 		queryset = queryset.filter(id__gt = 3)
-	elif datetime.datetime.now.hour > 17:
+	elif datetime.datetime.now().hour > 17:
 		queryset = queryset.filter(id__gt = 2)
-	elif datetime.datetime.now.hour > 13:
+	elif datetime.datetime.now().hour > 13:
 		queryset = queryset.filter(id__gt = 1)
 
 	serializer = TimeSlotSerializer(queryset,many=True)
